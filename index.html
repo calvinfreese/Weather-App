@@ -6,37 +6,110 @@
     <title>Weather App</title>
     <!-- bootstrap cdn -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <!-- linked stylesheet -->
     <link rel="stylesheet" type="text/css" href="./style.css">
 
 </head>
 <body>
-    <nav class="navbar navbar-light bg-light">
-        <span class="navbar-brand mb-0 h1">Navbar</span>
-    </nav>
-    <div class="container-fluid d-flex">
-        <div class="container">
-            <form id="locationForm"> 
-                <div class="form-group">
-                    <label for="location">Location</label>
-                    <input type="text" class="form-control" id="locationInput" aria-describedby="locationSearchInputs">
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-            <div class="list-group">
-                <button type="button" class="list-group-item list-group-item-action active">
-                    Cras justo odio
-                </button>
-                <button type="button" class="list-group-item list-group-item-action">Dapibus ac facilisis in</button>
-                <button type="button" class="list-group-item list-group-item-action">Morbi leo risus</button>
-                <button type="button" class="list-group-item list-group-item-action">Porta ac consectetur ac</button>
-                <button type="button" class="list-group-item list-group-item-action" disabled>Vestibulum at eros</button>
+    <header>
+        <nav class="navbar navbar-dark bg-dark">
+            <span class="navbar-brand mb-0 h1">Navbar</span>
+        </nav>
+    </header>
+    <div class="container-fluid">
+        <div class="row d-flex justify-content-center">
+            <div class="col-4">
+                <ul class="nav flex-column search-form">
+                    <form id="locationForm"> 
+                            <div class="form-group">
+                                <label for="location">Location</label>
+                                <input type="text" class="form-control" id="locationInput" aria-describedby="locationSearchInputs">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Active</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Disabled</a>
+                    </li>
+                </ul>
             </div>
+            <div class="col-4">
+                <div class="card">
+                    <div class='card-body fit'>
+                        <h2 class="current-location"></h2>
+                        <img id="weatherDisplay"/>
+                        <p class="current-temp"></p>
+                        <p class="current-humidity"></p>
+                        <p class="wind-speed"></p>
+                        <p class="current-uv-index"></p>
+                    </div>
+                    
+                </div>
+            </div>
+            
         </div>
-        <div class="container">
-            <img id="weatherDisplay" >
-        </div>   
+            <div class="row d-flex justify-content-center">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title forecast1a"></h5>
+                        <img class="forecast1-img"/>
+                        <p class="card-text forecast1-temp"></p>
+                        <p class="card-text forecast1-humidity"></p>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem;">
+                    <div  class="card-body">
+                        <h5 class="card-title forecast2-date"></h5>
+                        <img class="forecast2-img"/>
+                        <p class="card-text forecast2-temp"></p>
+                        <p class="card-text forecast2-humidity"></p>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem;">
+                    <div  class="card-body">
+                        <h5 class="card-title forecast3-date"></h5>
+                        <img class="forecast3-img"/>
+                        <p class="card-text forecast3-temp"></p>
+                        <p class="card-text forecast3-humidity"></p>
+                    </div>
+                </div>   
+                <div class="card" style="width: 18rem;">
+                    <div  class="card-body">
+                        <h5 class="card-title forecast4-date"></h5>
+                        <img class="forecast4-img"/>
+                        <p class="card-text forecast4-temp"></p>
+                        <p class="card-text forecast4-humidity"></p>
+                    </div>
+                </div>    
+                <div class="card" style="width: 18rem;">
+                    <div  class="card-body">
+                        <h5 class="card-title forecast5-date"></h5>
+                        <img class="forecast5-img"/>
+                        <p class="card-text forecast5-temp"></p>
+                        <p class="card-text forecast5-humidity"></p>
+                    </div>
+                </div>
+                    
+            
+            </div>
+            
+        </div>  
+        </div>
     </div>
+    
 
 
     
@@ -48,6 +121,13 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
     <!-- ajax cdn -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Moment cdn -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"
+      integrity="sha512-rmZcZsyhe0/MAjquhTgiUcb4d9knaFc7b5xAfju483gbEXTkeJRUMIPk6s3ySZMYUHEcjKbjLjyddGWMrNEvZg=="
+      crossorigin="anonymous"
+    ></script>
+    <!-- Main -->
     <script src="./script.js"></script>
 </body>
 </html>
