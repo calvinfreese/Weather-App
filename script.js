@@ -33,7 +33,7 @@ function getUVIndex() {
   });
 }
 
-function getForecast() {
+function getFiveDayForecast() {
     
     var city = inputResponse.name;
     var forecastURL =
@@ -112,19 +112,29 @@ function appendHistory() {
       
     );
     storageKey = "City_" + i;
-    localStorage.setItem(storageKey, history[i]);
+    localStorage.setItem("key_"+ i, JSON.stringify(history[i]));
   }
   
 }
 
 
 function loadStorage() {
-  var storage = localStorage.getItem(storageKey);
-  console.log(storage)
-  appendHistory();
+  var listGroup = $(".list-group");
+  
+  for (i=0; i < localStorage.length; i++) {
+    var storedSearches = localStorage.getItem("key_" + i);
+    storedSearches = storedSearches.replace(/"/g, '');
+    listGroup.append(
+      `<li class='list-group-item list-group-item-action historical-search'> ${storedSearches} </li> ` );
+      console.log(localStorage.key(i));
+       
+  }
 }
 
 loadStorage();
+
+
+
 
 //this happens first
 $("#locationForm").on("submit", function (e) {
@@ -171,11 +181,11 @@ $("#locationForm").on("submit", function (e) {
 
     getUVIndex();
 
-    getForecast();
+    getFiveDayForecast();
 
     appendHistory();
 
-    locationInput.val('');
+    $('#locationInput').val('');
     });
 });
 
@@ -223,7 +233,7 @@ $(document).on("click", ".historical-search", function () {
 
     getUVIndex();
 
-    getForecast();
+    getFiveDayForecast();
 
     
   });
