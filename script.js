@@ -61,7 +61,7 @@ function getFiveDayForecast() {
         var humidity = forecastList[i].main.humidity;
         
         if(i == 4) {
-          $(".forecast1a").text(forecastDateFormat);
+          $(".forecast1-date").text(forecastDateFormat);
           $(".forecast1-img").attr("src", weatherURL);
           $(".forecast1-temp").text('Temp: ' + temp);
           $(".forecast1-humidity").text(
@@ -103,7 +103,7 @@ function getFiveDayForecast() {
 
 function appendHistory() {
   var listGroup = $('.list-group');
-  
+  loadStorage();
   // var button = $('button');
   listGroup.empty();
   for (i = 0; i < history.length; i++) {
@@ -111,7 +111,6 @@ function appendHistory() {
       `<li class='list-group-item list-group-item-action historical-search'> ${history[i]} </li>`
       
     );
-    storageKey = "City_" + i;
     localStorage.setItem("key_"+ i, JSON.stringify(history[i]));
   }
   
@@ -124,7 +123,7 @@ function loadStorage() {
   for (i=0; i < localStorage.length; i++) {
     var storedSearches = localStorage.getItem("key_" + i);
     storedSearches = storedSearches.replace(/"/g, '');
-    listGroup.append(
+    listGroup.prepend(
       `<li class='list-group-item list-group-item-action historical-search'> ${storedSearches} </li> ` );
       console.log(localStorage.key(i));
        
@@ -247,6 +246,11 @@ $(document).on("click", ".historical-search", function () {
 
 });
 
+$("#clear-history").on("click", function (e) {
+  console.log("cleared");
+  localStorage.clear();
+  $('.list-group').empty();
+});
 
 
 });
