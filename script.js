@@ -1,7 +1,7 @@
 $(document).ready(function() {
     const APIkey = "39a1d34577f4801b22aafca38b9e1e96";
     var weatherIconCode = '';
-    
+    var storageKey = '';
     var inputResponse = '';
     var history = [];
 
@@ -99,7 +99,32 @@ function getForecast() {
       }
     });
 }
-       
+
+
+function appendHistory() {
+  var listGroup = $('.list-group');
+  
+  // var button = $('button');
+  listGroup.empty();
+  for (i = 0; i < history.length; i++) {
+    listGroup.prepend(
+      `<li class='list-group-item list-group-item-action historical-search'> ${history[i]} </li>`
+      
+    );
+    storageKey = "City_" + i;
+    localStorage.setItem(storageKey, history[i]);
+  }
+  
+}
+
+
+function loadStorage() {
+  var storage = localStorage.getItem(storageKey);
+  console.log(storage)
+  appendHistory();
+}
+
+loadStorage();
 
 //this happens first
 $("#locationForm").on("submit", function (e) {
@@ -147,11 +172,70 @@ $("#locationForm").on("submit", function (e) {
     getUVIndex();
 
     getForecast();
+
+    appendHistory();
+
+    locationInput.val('');
     });
 });
 
 
 
+
+$(document).on("click", ".historical-search", function () {
+  var locationInput = $(this).text();
+  console.log(locationInput)
+  var queryURL =
+    "https://api.openweathermap.org/data/2.5/weather?q=" +
+    locationInput +
+    "&appid=" +
+    APIkey;
+
+  console.log(locationInput);
+
+  $.ajax({
+    url: queryURL,
+    method: "GET",
+  }).then(function (response) {
+    console.log(response);
+
+    inputResponse = response;
+    weatherIconCode = response.weather[0].icon;
+    var weatherURL =
+      "http://openweathermap.org/img/w/" + weatherIconCode + ".png";
+
+    var currentDate = moment().format("L");
+    //grab Kelvin and convert to F
+    var kelvin = response.main.temp;
+    var temp = ((kelvin - 273.15) * 1.8 + 32).toFixed(2);
+    //humidity
+    var humidity = response.main.humidity;
+    //wind speed
+    var windSpeed = response.wind.speed;
+
+    $(".current-location").text(`${response.name} ${currentDate}`);
+    $("#weatherDisplay").attr("src", weatherURL);
+    $(".current-temp").text("Temp: " + temp + " F");
+    $(".current-humidity").text("Humidity: " + humidity + "%");
+    $(".wind-speed").text("Wind Speed: " + windSpeed + " mph");
+
+    
+
+    getUVIndex();
+
+    getForecast();
+
+    
+  });
+
+
+
+
+
+
+
+
+});
 
 
 
