@@ -6,47 +6,50 @@ $(document).ready(function () {
 
   function loadLastSearch() {
     if (localStorage.getItem("key_0") != null) {
-      for (i = 0; i < localStorage.length; i++) {
-        var values = localStorage.getItem("key_" + i);
-        console.log("here index " + i);
-        var locationInput = values.replace(/"/g, "");
-        console.log(locationInput);
-        var queryURL =
-          "https://api.openweathermap.org/data/2.5/weather?q=" +
-          locationInput +
-          "&appid=" +
-          APIkey;
+      // for (i = 0; i < localStorage.length; i++) {
 
-        $.ajax({
-          url: queryURL,
-          method: "GET",
-        }).then(function (response) {
-          inputResponse = response;
-          weatherIconCode = response.weather[0].icon;
-          var weatherURL =
-            "http://openweathermap.org/img/w/" + weatherIconCode + ".png";
+      var keyIndex = localStorage.length - 1;
+      var values = localStorage.getItem("key_" + keyIndex);
+      
+      
+      var locationInput = values.replace(/"/g, "");
+      console.log(locationInput);
+      var queryURL =
+        "https://api.openweathermap.org/data/2.5/weather?q=" +
+        locationInput +
+        "&appid=" +
+        APIkey;
 
-          var currentDate = moment().format("L");
-          //grab Kelvin and convert to F
-          var kelvin = response.main.temp;
-          var temp = ((kelvin - 273.15) * 1.8 + 32).toFixed(2);
-          //humidity
-          var humidity = response.main.humidity;
-          //wind speed
-          var windSpeed = response.wind.speed;
+      $.ajax({
+        url: queryURL,
+        method: "GET",
+      }).then(function (response) {
+        inputResponse = response;
+        weatherIconCode = response.weather[0].icon;
+        var weatherURL =
+          "http://openweathermap.org/img/w/" + weatherIconCode + ".png";
 
-          $(".current-location").text(`${response.name} ${currentDate}`);
-          $("#weatherDisplay").attr("src", weatherURL);
-          $("#weatherDisplay").attr("alt", "weather icon");
-          $(".current-temp").text("Temp: " + temp + " F");
-          $(".current-humidity").text("Humidity: " + humidity + "%");
-          $(".wind-speed").text("Wind Speed: " + windSpeed + " mph");
+        var currentDate = moment().format("L");
+        //grab Kelvin and convert to F
+        var kelvin = response.main.temp;
+        var temp = ((kelvin - 273.15) * 1.8 + 32).toFixed(2);
+        //humidity
+        var humidity = response.main.humidity;
+        //wind speed
+        var windSpeed = response.wind.speed;
 
-          getUVIndex();
+        $(".current-location").text(`${response.name} ${currentDate}`);
+        $("#weatherDisplay").attr("src", weatherURL);
+        $("#weatherDisplay").attr("alt", "weather icon");
+        $(".current-temp").text("Temp: " + temp + " F");
+        $(".current-humidity").text("Humidity: " + humidity + "%");
+        $(".wind-speed").text("Wind Speed: " + windSpeed + " mph");
 
-          getFiveDayForecast();
-        });
-      }
+        getUVIndex();
+
+        getFiveDayForecast();
+      });
+      
     }
   }
 
