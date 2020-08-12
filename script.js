@@ -194,7 +194,7 @@ function loadStorage() {
   
   if (localStorage.getItem("key_0") != null) {
     for (i = 0; i < localStorage.length; i++) {
-      var storedSearches = localStorage.getItem("key_" + keysIndex + 1);
+      var storedSearches = localStorage.getItem("key_" + i);
       storedSearches = storedSearches.replace(/"/g, "");
       listGroup.prepend(
         `<li class='list-group-item list-group-item-action historical-search'> ${storedSearches} </li> `
