@@ -177,13 +177,12 @@ function appendHistory() {
   // var button = $('button');
   listGroup.empty();
   var keys = localStorage.keys();
-  var keysIndex = keys[keys.length - 1].split("_")[1]
   for (i = 0; i < history.length; i++) {
     listGroup.prepend(
       `<li class='list-group-item list-group-item-action historical-search'> ${history[i]} </li>`
       
     );
-    localStorage.setItem("key_" + keysIndex + 1, JSON.stringify(history[i]));
+    localStorage.setItem("key_"+ i, JSON.stringify(history[i]));
   }
   
 }
