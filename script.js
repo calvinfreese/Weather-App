@@ -176,7 +176,9 @@ function appendHistory() {
   loadStorage();
   // var button = $('button');
   listGroup.empty();
-  for (i = 0; i < history.length; i++) {
+  var keys = Object.keys(localStorage);
+  var keysIndex = keys[keys.length -1];
+   for (i = 0; i < history.length; i++) {
     listGroup.prepend(
       `<li class='list-group-item list-group-item-action historical-search'> ${history[i]} </li>`
       
