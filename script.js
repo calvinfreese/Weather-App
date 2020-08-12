@@ -10,9 +10,9 @@ $(document).ready(function() {
 function loadLastSearch() {
   if (localStorage.length != 0 ) {
     for(i=0; i < localStorage.length; i++){
-      var values = localStorage.getItem("key_" + i)
-      var locationInput = values.replace(/"/g, "")   ; ;
-      console.log(locationInput)
+      var values = localStorage.getItem("key_" + i);
+      var locationInput = values.replace(/"/g, "");
+      console.log(locationInput);
       var queryURL =
       "https://api.openweathermap.org/data/2.5/weather?q=" +
       locationInput +
@@ -39,6 +39,7 @@ function loadLastSearch() {
       
       $('.current-location').text(`${response.name} ${currentDate}`);
       $('#weatherDisplay').attr('src', weatherURL);
+      $("#weatherDisplay").attr("alt", "weather icon");
       $('.current-temp').text('Temp: ' + temp  + ' F');
       $('.current-humidity').text('Humidity: ' + humidity + '%');
       $('.wind-speed').text('Wind Speed: ' + windSpeed +' mph');
@@ -114,7 +115,7 @@ function getFiveDayForecast() {
       //loop through forecast days, grab time index time @ 12p for each day, and print info to forecast cards in html
       for (i = 4; i < forecastList.length; i += 8) {
         
-        var forecastIcon = forecastList[i].weather[0].icon
+        var forecastIcon = forecastList[i].weather[0].icon;
         var weatherURL =
           "http://openweathermap.org/img/w/" + forecastIcon + ".png";
         $("#weatherDisplay").attr("src", weatherURL);
@@ -128,6 +129,7 @@ function getFiveDayForecast() {
         if(i == 4) {
           $(".forecast1-date").text(forecastDateFormat);
           $(".forecast1-img").attr("src", weatherURL);
+          $(".forecast1-img").attr("alt", "weather icon");
           $(".forecast1-temp").text("Temp: " + temp + " F");
           $(".forecast1-humidity").text(
             "Humidity: " + humidity
@@ -135,6 +137,7 @@ function getFiveDayForecast() {
         } else if (i == 12) {
           $(".forecast2-date").text(forecastDateFormat);
           $(".forecast2-img").attr("src", weatherURL);
+          $(".forecast2-img").attr("alt", "weather icon");
           $(".forecast2-temp").text("Temp: " + temp + ' F');
           $(".forecast2-humidity").text(
             "Humidity: " + humidity
@@ -142,6 +145,7 @@ function getFiveDayForecast() {
         } else if (i == 20) {
           $(".forecast3-date").text(forecastDateFormat);
           $(".forecast3-img").attr("src", weatherURL);
+          $(".forecast3-img").attr("alt", "weather icon");
           $(".forecast3-temp").text("Temp: " + temp + " F");
           $(".forecast3-humidity").text(
             "Humidity: " + humidity
@@ -149,6 +153,7 @@ function getFiveDayForecast() {
         } else if (i == 28) {
           $(".forecast4-date").text(forecastDateFormat);
           $(".forecast4-img").attr("src", weatherURL);
+          $(".forecast4-img").attr("alt", "weather icon");
           $(".forecast4-temp").text("Temp: " + temp + " F");
           $(".forecast4-humidity").text(
             "Humidity: " + humidity
@@ -234,6 +239,7 @@ $("#locationForm").on("submit", function (e) {
     
     $('.current-location').text(`${response.name} ${currentDate}`);
     $('#weatherDisplay').attr('src', weatherURL);
+    $("#weatherDisplay").attr("alt", "weather icon");
     $('.current-temp').text('Temp: ' + temp  + ' F');
     $('.current-humidity').text('Humidity: ' + humidity + '%');
     $('.wind-speed').text('Wind Speed: ' + windSpeed +' mph');
@@ -289,6 +295,7 @@ $(document).on("click", ".historical-search", function () {
 
     $(".current-location").text(`${response.name} ${currentDate}`);
     $("#weatherDisplay").attr("src", weatherURL);
+    $("#weatherDisplay").attr("alt", "weather icon");
     $(".current-temp").text("Temp: " + temp + " F");
     $(".current-humidity").text("Humidity: " + humidity + "%");
     $(".wind-speed").text("Wind Speed: " + windSpeed + " mph");
