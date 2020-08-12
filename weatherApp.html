@@ -19,9 +19,10 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-light bg-light">
-            <span class="navbar-brand mb-0 h1">Weather Dashboard</span>
+        <nav class="navbar-light bg-light weather-header">
+            <h1>Weather Dashboard</h1>
         </nav>
+        
     </header>
     <div class="container-fluid">
         <div class="row d-flex justify-content-center">
@@ -33,11 +34,9 @@
                                 <label for="location">Location</label>
                                 <input type="text" class="form-control" id="locationInput" aria-describedby="locationSearchInputs">
                             </div>
-                        <button type="submit" class="btn btn-info">Submit</button>
-                        <button type="button" id="clear-history"class="btn btn-danger">Clear Search History</button>                        
-                        
+                            <button type="submit" class="btn btn-info">Submit</button>
+                            <button type="button" id="clear-history"class="btn btn-danger">Clear Search History</button>                        
                         </form>
-                        
                     <!-- Previous searches stored here -->
                         <ul class="list-group">
                         

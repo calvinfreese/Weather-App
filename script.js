@@ -1,10 +1,65 @@
 $(document).ready(function() {
     const APIkey = "39a1d34577f4801b22aafca38b9e1e96";
     var weatherIconCode = '';
-    var storageKey = '';
     var inputResponse = '';
     var history = [];
 
+
+
+
+function loadLastSearch() {
+  if (localStorage.length != 0 ) {
+    for(i=0; i < localStorage.length; i++){
+      var values = localStorage.getItem("key_" + i)
+      var locationInput = values.replace(/"/g, "")   ; ;
+      console.log(locationInput)
+      var queryURL =
+      "https://api.openweathermap.org/data/2.5/weather?q=" +
+      locationInput +
+      "&appid=" +
+      APIkey;
+
+      $.ajax({
+      url: queryURL,
+      method: "GET",
+      }).then(function (response) {
+
+      inputResponse = response;
+      weatherIconCode = response.weather[0].icon;
+      var weatherURL = "http://openweathermap.org/img/w/" + weatherIconCode + ".png"; 
+
+      var currentDate = moment().format("L");
+      //grab Kelvin and convert to F
+      var kelvin = response.main.temp;
+      var temp = ((kelvin - 273.15) * 1.8 + 32).toFixed(2);
+      //humidity
+      var humidity = response.main.humidity;
+      //wind speed
+      var windSpeed = response.wind.speed;
+      
+      $('.current-location').text(`${response.name} ${currentDate}`);
+      $('#weatherDisplay').attr('src', weatherURL);
+      $('.current-temp').text('Temp: ' + temp  + ' F');
+      $('.current-humidity').text('Humidity: ' + humidity + '%');
+      $('.wind-speed').text('Wind Speed: ' + windSpeed +' mph');
+
+      getUVIndex();
+
+      getFiveDayForecast();
+    
+    });
+      
+      
+    }
+  
+  }
+
+}
+
+loadLastSearch();
+
+    
+   
 
 
 //Gets UV Index - called by city submission ajax req.
@@ -24,7 +79,7 @@ function getUVIndex() {
     url: urlUVIndex,
     method: "GET",
   }).then(function(r) {
-    console.log(r);
+    
 
     //Hey! this is the UV Index :D
     var uvIndex = r.value;
@@ -33,6 +88,7 @@ function getUVIndex() {
   });
 }
 
+//Gets Five day forecast
 function getFiveDayForecast() {
     
     var city = inputResponse.name;
@@ -43,7 +99,7 @@ function getFiveDayForecast() {
       url: forecastURL,
       method: "GET",
     }).then(function (r) {
-      console.log(r);
+      
       var forecastList = r.list;
 
       //loop through forecast days, grab time index time @ 12p for each day, and print info to forecast cards in html
@@ -100,7 +156,7 @@ function getFiveDayForecast() {
     });
 }
 
-
+//Adds historical searches as list items on page and stores them to localStorage
 function appendHistory() {
   var listGroup = $('.list-group');
   loadStorage();
@@ -125,7 +181,7 @@ function loadStorage() {
     storedSearches = storedSearches.replace(/"/g, '');
     listGroup.prepend(
       `<li class='list-group-item list-group-item-action historical-search'> ${storedSearches} </li> ` );
-      console.log(localStorage.key(i));
+      
        
   }
 }
@@ -145,13 +201,13 @@ $("#locationForm").on("submit", function (e) {
     "&appid=" +
     APIkey;
 
-    console.log(locationInput);
+    
 
     $.ajax({
     url: queryURL,
     method: "GET",
     }).then(function (response) {
-    console.log(response);
+    
 
     
     inputResponse = response;
@@ -193,20 +249,20 @@ $("#locationForm").on("submit", function (e) {
 
 $(document).on("click", ".historical-search", function () {
   var locationInput = $(this).text();
-  console.log(locationInput)
+  
   var queryURL =
     "https://api.openweathermap.org/data/2.5/weather?q=" +
     locationInput +
     "&appid=" +
     APIkey;
 
-  console.log(locationInput);
+  
 
   $.ajax({
     url: queryURL,
     method: "GET",
   }).then(function (response) {
-    console.log(response);
+    
 
     inputResponse = response;
     weatherIconCode = response.weather[0].icon;
@@ -247,7 +303,7 @@ $(document).on("click", ".historical-search", function () {
 });
 
 $("#clear-history").on("click", function (e) {
-  console.log("cleared");
+  
   localStorage.clear();
   $('.list-group').empty();
 });
