@@ -177,8 +177,9 @@ function appendHistory() {
   // var button = $('button');
   listGroup.empty();
   var keys = Object.keys(localStorage);
+  var keysIndex = -1
   if (keys != null) {
-    var keysIndex = keys[keys.length - 1].split("_")[1];
+    keysIndex = keys[keys.length - 1].split("_")[1];
   }
   
    for (i = 0; i < history.length; i++) {
