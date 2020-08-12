@@ -60,7 +60,7 @@ $(document).ready(function () {
     var lat = inputResponse.coord.lat;
     var lon = inputResponse.coord.lon;
     var urlUVIndex =
-      "http://api.openweathermap.org/data/2.5/uvi?appid=" +
+      "https://api.openweathermap.org/data/2.5/uvi?appid=" +
       APIkey +
       "&lat=" +
       lat +
@@ -205,7 +205,7 @@ $(document).ready(function () {
       inputResponse = response;
       weatherIconCode = response.weather[0].icon;
       var weatherURL =
-        "http://openweathermap.org/img/w/" + weatherIconCode + ".png";
+        "https://openweathermap.org/img/w/" + weatherIconCode + ".png";
 
       var currentDate = moment().format("L");
       //grab Kelvin and convert to F
