@@ -190,14 +190,16 @@ function appendHistory() {
 function loadStorage() {
   var listGroup = $(".list-group");
   
-  for (i=0; i < localStorage.length; i++) {
-    var storedSearches = localStorage.getItem("key_" + i);
-    storedSearches = storedSearches.replace(/"/g, '');
-    listGroup.prepend(
-      `<li class='list-group-item list-group-item-action historical-search'> ${storedSearches} </li> ` );
-      
-       
+  if (localStorage.length > 0) {
+    for (i = 0; i < localStorage.length; i++) {
+      var storedSearches = localStorage.getItem("key_" + i);
+      storedSearches = storedSearches.replace(/"/g, "");
+      listGroup.prepend(
+        `<li class='list-group-item list-group-item-action historical-search'> ${storedSearches} </li> `
+      );
+    }
   }
+  
 }
 
 loadStorage();
