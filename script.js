@@ -84,6 +84,15 @@ function getUVIndex() {
     //Hey! this is the UV Index :D
     var uvIndex = r.value;
     $('.current-uv-index').text('UV Index: ' + uvIndex);
+    if (uvIndex >= 8) {
+      $('.current-uv-index').attr('class', 'current-uv-index very-high-uv');
+    } else if (uvIndex < 8 && uvIndex >= 6) {
+      $(".current-uv-index").attr("class", "current-uv-index high-uv");
+    } else if (uvIndex < 6 && uvIndex >= 3) {
+      $(".current-uv-index").attr("class", "current-uv-index mod-uv"); 
+    } else {
+      $(".current-uv-index").attr("class", "current-uv-index low-uv");
+    }
     
   });
 }
@@ -119,35 +128,35 @@ function getFiveDayForecast() {
         if(i == 4) {
           $(".forecast1-date").text(forecastDateFormat);
           $(".forecast1-img").attr("src", weatherURL);
-          $(".forecast1-temp").text('Temp: ' + temp);
+          $(".forecast1-temp").text("Temp: " + temp + " F");
           $(".forecast1-humidity").text(
             "Humidity: " + humidity
           );
         } else if (i == 12) {
           $(".forecast2-date").text(forecastDateFormat);
           $(".forecast2-img").attr("src", weatherURL);
-          $(".forecast2-temp").text("Temp: " + temp);
+          $(".forecast2-temp").text("Temp: " + temp + ' F');
           $(".forecast2-humidity").text(
             "Humidity: " + humidity
           );
         } else if (i == 20) {
           $(".forecast3-date").text(forecastDateFormat);
           $(".forecast3-img").attr("src", weatherURL);
-          $(".forecast3-temp").text("Temp: " + temp);
+          $(".forecast3-temp").text("Temp: " + temp + " F");
           $(".forecast3-humidity").text(
             "Humidity: " + humidity
           );
         } else if (i == 28) {
           $(".forecast4-date").text(forecastDateFormat);
           $(".forecast4-img").attr("src", weatherURL);
-          $(".forecast4-temp").text("Temp: " + temp);
+          $(".forecast4-temp").text("Temp: " + temp + " F");
           $(".forecast4-humidity").text(
             "Humidity: " + humidity
           );
         } else if (i == 36) {
           $(".forecast5-date").text(forecastDateFormat);
           $(".forecast5-img").attr("src", weatherURL);
-          $(".forecast5-temp").text("Temp: " + temp);
+          $(".forecast5-temp").text("Temp: " + temp + " F");
           $(".forecast5-humidity").text('Humidity: ' + humidity);
         }
 

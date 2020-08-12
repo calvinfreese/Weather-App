@@ -43,3 +43,34 @@ ul {
     font-weight: 600;
     box-shadow: 0px 0px 8px 0px #6A6A6A;
 }
+
+/* Very High UV */
+.very-high-uv {
+    background-color: #DC3545;
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+}
+/* High UV */
+.high-uv {
+    background-color: #E6935B;
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+}
+/* Moderate UV */
+.mod-uv {
+    background-color: #F0E67E;
+    /* color: white; */
+    padding: 8px;
+    border-radius: 5px;
+}
+/* Low UV */
+.low-uv {
+    background-color: #77DC9E;
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+

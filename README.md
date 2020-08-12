@@ -1,46 +1,28 @@
-# 06 Server-Side APIs: Weather Dashboard
+# Weather Dasboard
 
-Developers are often tasked with retrieving data from another application's API and using it in the context of their own. Third-party APIs allow developers to access their data and functionality by making requests with specific parameters to a URL. Your challenge is to build a weather dashboard that will run in the browser and feature dynamically updated HTML and CSS.
+## Description
+A weather app built using ajax requests. Upon searching a city, the current results are displayed along with a future five day forecast. Current day results feature Location Name, Date, Weather Icon (rainy, sunny, etc), Humidity, Temperature, Wind Speed, and UV Index. Based on UV Index, color styling will change from Red (8+), Orange (6-7), Yellow (3 to 5), and Green (0-2).
+Search results will be stored to localStorage. On page load, the most recent historical search data will be populated.
+## Live Site
+[Weather Dashboard](https://whackingmufn.github.io/Homework/WeekFive/Develop/index.html)
 
-Use the [OpenWeather API](https://openweathermap.org/api) to retrieve weather data for cities. The documentation includes a section called "How to start" that will provide basic setup and usage instructions. Use `localStorage` to store any persistent data.
+## Installation
+The html, css, and script files are all in the same folder. If they're kept in the same folder after cloning, the application will run. If the end user changes the file structure, weatherApp.html and hiscore.html must be updated with the new file paths for script.js and style.css in relation to weatherApp.html.
 
-## User Story
+API Key will need to be obtained from [Open Weather](https://openweathermap.org/api) by creating your own account. After account creation, an API key will be availble to you [here](https://home.openweathermap.org/api_keys). Update the APIKey variable in script.js with your own - variable will need to be a string.
 
-```
-AS A traveler
-I WANT to see the weather outlook for multiple cities
-SO THAT I can plan a trip accordingly
-```
 
-## Acceptance Criteria
+## Screenshots
+#### Full Page
+ ![Full Page Display](./Assets/01-base-photo.png)
 
-```
-GIVEN a weather dashboard with form inputs
-WHEN I search for a city
-THEN I am presented with current and future conditions for that city and that city is added to the search history
-WHEN I view current weather conditions for that city
-THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index
-WHEN I view the UV index
-THEN I am presented with a color that indicates whether the conditions are favorable, moderate, or severe
-WHEN I view future weather conditions for that city
-THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, and the humidity
-WHEN I click on a city in the search history
-THEN I am again presented with current and future conditions for that city
-WHEN I open the weather dashboard
-THEN I am presented with the last searched city forecast
-```
 
-The following image demonstrates the application functionality:
 
-![weather dashboard demo](./Assets/06-server-side-apis-homework-demo.png)
 
-## Review
 
-You are required to submit the following for review:
+## Credits
+This assignment is provided by Trilogy Education Services. CSS and Skeletal HTML was provided by Trilogy Education Services. Code was structured based on in class activities and lectures, [MDN](https://developer.mozilla.org/en-US/) Reference Documents for JavaScript syntax, [JSHint](https://jshint.com/) for JavaScript validation, and various other online resources. 
+## License
 
-* The URL of the deployed application.
-
-* The URL of the GitHub repository. Give the repository a unique name and include a README describing the project.
-
-- - -
-© 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
+[License](https://github.com/whackingMUFN/Homework/WeekFive/LICENSE.txt)
+MIT &copy; 2020 Calvin Freese
