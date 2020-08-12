@@ -8,7 +8,7 @@ $(document).ready(function() {
 
 
 function loadLastSearch() {
-  if (localStorage.length != 0 ) {
+  if (localStorage.length > 0 ) {
     for(i=0; i < localStorage.length; i++){
       var values = localStorage.getItem("key_" + i);
       var locationInput = values.replace(/"/g, "");
