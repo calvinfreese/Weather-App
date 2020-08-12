@@ -8,7 +8,7 @@ $(document).ready(function() {
 
 
 function loadLastSearch() {
-  if (localStorage.length > 0 ) {
+  if (localStorage.getItem("key_0") != null ) {
     for(i=0; i < localStorage.length; i++){
       var values = localStorage.getItem("key_" + i);
       var locationInput = values.replace(/"/g, "");
@@ -190,7 +190,7 @@ function appendHistory() {
 function loadStorage() {
   var listGroup = $(".list-group");
   
-  if (localStorage.length > 0) {
+  if (localStorage.getItem("key_0") != null) {
     for (i = 0; i < localStorage.length; i++) {
       var storedSearches = localStorage.getItem("key_" + i);
       storedSearches = storedSearches.replace(/"/g, "");
