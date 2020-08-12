@@ -7,7 +7,7 @@ Search results will be stored to localStorage. On page load, the most recent his
 [Weather Dashboard](https://whackingmufn.github.io/Homework/WeekFive/Develop/index.html)
 
 ## Installation
-The html, css, and script files are all in the same folder. If they're kept in the same folder after cloning, the application will run. If the end user changes the file structure, weatherApp.html and hiscore.html must be updated with the new file paths for script.js and style.css in relation to weatherApp.html.
+The html, css, and script files are all in the same folder. If they're kept in the same folder after cloning, the application will run. If the end user changes the file structure, index.html and hiscore.html must be updated with the new file paths for script.js and style.css in relation to index.html.
 
 API Key will need to be obtained from [Open Weather](https://openweathermap.org/api) by creating your own account. After account creation, an API key will be availble to you [here](https://home.openweathermap.org/api_keys). Update the APIKey variable in script.js with your own - variable will need to be a string.
 
