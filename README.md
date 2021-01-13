@@ -4,7 +4,7 @@
 A weather app built using ajax requests. Upon searching a city, the current results are displayed along with a future five day forecast. Current day results feature Location Name, Date, Weather Icon (rainy, sunny, etc), Humidity, Temperature, Wind Speed, and UV Index. Based on UV Index, color styling will change from Red (8+), Orange (6-7), Yellow (3 to 5), and Green (0-2).
 Search results will be stored to localStorage. On page load, the most recent historical search data will be populated.
 ## Live Site
-[Weather Dashboard](https://whackingmufn.github.io/Weather-App/index.html)
+[Weather Dashboard](https://calvinfreese.github.io/Weather-App/index.html)
 
 ## Installation
 The html, css, and script files are all in the same folder. If they're kept in the same folder after cloning, the application will run. If the end user changes the file structure, index.html and hiscore.html must be updated with the new file paths for script.js and style.css in relation to index.html.
